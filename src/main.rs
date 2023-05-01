@@ -1,6 +1,7 @@
 use std::time::Duration;
 use std::time::Instant;
 mod print_menu;
+mod random_strings;
 
 enum MenuOptions {
     RandomSentence,
@@ -15,8 +16,8 @@ fn get_choice() -> i32 {
     std::io::stdin().read_line(&mut choice).unwrap();
     let trimmed = choice.trim();
     match trimmed.parse::<i32>() {
-        Ok(i) => return i,
-        Err(..) => return 0,
+        Ok(i) => i,
+        Err(..) => 0,
     }
 }
 
@@ -34,11 +35,7 @@ fn menu() -> MenuOptions {
 }
 
 fn random_sentence() {
-    let strings = [
-        "can need help long some state see who turn then head first late some look keep have     ",
-        "another become down other life program way head home before late can feel too any       ",
-        "give from another may help each change around about on new in where so system it        ",
-    ];
+    let strings = random_strings::get_random_strings();
     let mut answer = String::new();
     let mut result = print_menu::Result::Type;
     let now = Instant::now();
@@ -59,11 +56,11 @@ fn check_answer(string: String, answer_string: String) -> print_menu::Result {
         if index >= words.len() {
             break;
         }
-        if words[index].to_string() != answer.to_string() {
+        if *words[index] != **answer {
             is_all_correct = print_menu::Result::Wrong;
         }
     }
-    return is_all_correct;
+    is_all_correct
 }
 
 fn practice_mistake_words() {}

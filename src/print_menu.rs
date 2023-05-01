@@ -22,11 +22,11 @@ fn arrange_time(time: f32) -> String {
     if time < 10 {
         time_string = time.to_string() + " sec  ";
     } else if time < 100 {
-        time_string = time.to_string() + " sec "
+        time_string = time.to_string() + " sec ";
     } else {
-        time_string = time.to_string() + " sec"
+        time_string = time.to_string() + " sec";
     }
-    return time_string;
+    time_string
 }
 
 pub fn print_string(
@@ -44,9 +44,9 @@ pub fn print_string(
     let time = arrange_time(time.as_secs_f32());
 
     println!("{} {} {}", string, string_id, total);
-    println!("╭──────────────────────────────────────────────────────────────────────────────────────────╮╭─────────╮╭───────╮╭─────────╮╭─────────────╮");
-    println!("│                                     Type the below word                                  ││ Result  ││ Line  ││  Time   ││  Speed(wpm) │");
-    println!("│──────────────────────────────────────────────────────────────────────────────────────────││─────────││───────││─────────││─────────────│");
+    println!("╭─────────────────────────────────────────────────────────────╮╭─────────╮╭───────╮╭─────────╮╭─────────────╮");
+    println!("│                       Type the below word                   ││ Result  ││ Line  ││  Time   ││  Speed(wpm) │");
+    println!("│─────────────────────────────────────────────────────────────││─────────││───────││─────────││─────────────│");
     println!("│{string}  ││ {result} ││ {string_id}/{total}   ││ {time} ││10  wpm      │");
-    println!("╰──────────────────────────────────────────────────────────────────────────────────────────╯╰─────────╯╰───────╯╰─────────╯╰─────────────╯");
+    println!("╰─────────────────────────────────────────────────────────────╯╰─────────╯╰───────╯╰─────────╯╰─────────────╯");
 }
